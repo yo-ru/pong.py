@@ -111,6 +111,8 @@ def draw(window) -> None:
     elif pad2_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad2_vel < 0:
         pad2_pos[1] += pad2_vel
 
+    # TODO: AI/Bot As Pad 2
+
     # Draw Pads
     pygame.draw.polygon(window, WHITE, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
     pygame.draw.polygon(window, WHITE, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
