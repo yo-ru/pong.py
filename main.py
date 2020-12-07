@@ -1,12 +1,9 @@
 """ Import Modules """
 import os, sys, random
-
 # Disable pygame Message
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
-
-from pygame.locals import *
-from typing import (Tuple, List)
+from pygame.locals import (KEYDOWN, KEYUP, K_DOWN, K_UP, QUIT, K_w, K_s)
 from cmyui import (log, Ansi)
 
 """ Global Variables """
@@ -71,7 +68,7 @@ def init_ball(right: bool) -> None:
         horz = -horz
 
     # Set Velocity
-    ball_vel = [horz, -vert]
+    ball_vel = [horz+1, -vert-1]
 
     log("Reached init_ball end!", Ansi.LCYAN)
 
