@@ -1,6 +1,6 @@
 """ Import Modules """
 import sys, random, pygame
-from pygame.locals import (color, Color, Rect)
+from pygame.locals import *
 from typing import (Tuple, List)
 from cmyui import log
 
@@ -77,11 +77,9 @@ def init() -> None:
     pad1_pos = [PAD_WIDTH_HALF-1, HEIGHT//2]
     pad2_pos = [WIDTH+1-PAD_WIDTH_HALF, HEIGHT//2]
 
-    # Ball Spawns Right
+    # Ball Spawns Right or Left
     if random.randrange(0, 2) == 0:
         init_ball(True)
-    
-    # Ball Spawns Left
     else:
         init_ball(False)
 
@@ -117,8 +115,8 @@ def draw(window) -> None:
     pygame.draw.circle(window, WHITE, ball_pos, 20, 0)
 
     # Draw Pads
-    pygame.draw.polygon(window, GREEN, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
-    pygame.draw.polygon(window, GREEN, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
+    pygame.draw.polygon(window, WHITE, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
+    pygame.draw.polygon(window, WHITE, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
 
     # Ball Collision Check With Walls
     if int(ball_pos[1]) <= BALL_RADIUS:
@@ -147,14 +145,47 @@ def draw(window) -> None:
     label = font.render(str(left_score), 1, WHITE)
     window.blit(label, (50, 20))
     label = font.render(str(right_score), 1, WHITE)
-    window.blit(label, (470, 20))
+    window.blit(label, (500, 20))
 
+""" Key Up/Down Events """
+def keyup(event) -> None:
+    global pad1_vel, pad2_vel
+
+    if event.key in (K_w, K_s):
+        pad1_vel = 0
+    elif event.key in (K_UP, K_DOWN):
+        pad2_vel = 0
+
+def keydown(event) -> None:
+    global pad1_vel, pad2_vel
+
+    if event.key == K_w:
+        pad1_vel = -8
+    elif event.key == K_s:
+        pad1_vel = 8
+    elif event.key == K_UP:
+        pad2_vel = -8
+    elif event.key == K_DOWN:
+        pad2_vel = 8
 
 """ Main Loop """
 def main() -> None:
     while True:
         # Draw Window
         draw(window)
+
+        # Handle Events
+        for event in pygame.event.get():
+            # Key Up Event
+            if event.type == KEYUP:
+                keyup(event)
+            # Key Down Event
+            elif event.type == KEYDOWN:
+                keydown(event)
+            # Quit Event
+            elif event.type == QUIT:
+                pygame.quit()
+                sys.exit()
 
         # Update Display
         pygame.display.update()
