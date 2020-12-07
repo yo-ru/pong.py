@@ -29,8 +29,8 @@ PAD_WIDTH_HALF:  int = PAD_WIDTH//2
 PAD_HEIGHT_HALF: int = PAD_HEIGHT//2
 
 # Ball Position And Velocity
-ball_pos: list = list[0, 0]
-ball_vel: list = list[0, 0]
+ball_pos = [0, 0]
+ball_vel = [0, 0]
 
 # Pad Position And Velocity
 pad1_pos:  int = 0
@@ -55,7 +55,7 @@ def init_ball(right: bool) -> None:
     global ball_pos, ball_vel
 
     # Set Ball Position
-    ball_pos = List[WIDTH//2, HEIGHT//2]
+    ball_pos = (WIDTH//2, HEIGHT//2)
 
     # Get A Random Vertical and Horizontal Value
     vert: int = random.randrange(1, 3)
@@ -66,7 +66,7 @@ def init_ball(right: bool) -> None:
         horz = -horz
 
     # Set Velocity
-    ball_vel = List[horz, -vert]
+    ball_vel = (horz, -vert)
 
 """ Initialize """
 def init() -> None:
@@ -74,8 +74,8 @@ def init() -> None:
     global pad1_pos, pad2_pos
     
     # Set Pad Positions
-    pad1_pos = List[PAD_WIDTH_HALF-1, HEIGHT//2]
-    pad2_pos = List[WIDTH+1-PAD_WIDTH_HALF, HEIGHT//2]
+    pad1_pos = (PAD_WIDTH_HALF-1, HEIGHT//2)
+    pad2_pos = (WIDTH+1-PAD_WIDTH_HALF, HEIGHT//2)
 
     # Ball Spawns Right
     if random.randrange(0, 2) == 0:
