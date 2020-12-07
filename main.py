@@ -18,7 +18,7 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Ball Measurements
-BALL_RADIUS = 10
+BALL_RADIUS = 20
 
 # Pad Measurements
 PAD_WIDTH       = 8
@@ -68,7 +68,7 @@ def init_ball(right: bool) -> None:
         horz = -horz
 
     # Set Velocity
-    ball_vel = [3, 2]
+    ball_vel = [horz, -vert]
 
 """ Initialize """
 def init() -> None:
