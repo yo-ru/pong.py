@@ -18,7 +18,7 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Ball Measurements
-BALL_RADIUS = 20
+BALL_RADIUS = 10
 
 # Pad Measurements
 PAD_WIDTH       = 8
@@ -111,14 +111,14 @@ def draw(window) -> None:
     elif pad2_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad2_vel < 0:
         pad2_pos[1] += pad2_vel
 
+    # Draw Pads
+    pygame.draw.polygon(window, WHITE, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
+    pygame.draw.polygon(window, WHITE, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
+
     # Update And Draw Ball
     ball_pos[0] += int(ball_pos[0])
     ball_pos[1] += int(ball_pos[1])
     pygame.draw.circle(window, WHITE, ball_pos, BALL_RADIUS, 0)
-
-    # Draw Pads
-    pygame.draw.polygon(window, WHITE, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
-    pygame.draw.polygon(window, WHITE, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
 
     # Ball Collision Check With Walls
     if int(ball_pos[1]) <= BALL_RADIUS:
@@ -134,7 +134,7 @@ def draw(window) -> None:
     elif int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH:
         right_score += 1
         log(f"Right Scored! ({right_score})", Ansi.LBLUE)
-        init_ball(True)
+        #init_ball(True)
     if int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH and int(ball_pos[1]) in range(pad2_pos[1] - PAD_HEIGHT_HALF, pad2_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
         ball_vel[0] *= 1.1
@@ -142,7 +142,7 @@ def draw(window) -> None:
     elif int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH:
         left_score += 1
         log(f"Left Scored! ({left_score})", Ansi.LBLUE)
-        init_ball(False)
+        #init_ball(False)
 
     # Update and Draw Scores
     font = pygame.font.SysFont("Comic Sans MS", 20)
