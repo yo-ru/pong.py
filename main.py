@@ -10,8 +10,8 @@ fps = pygame.time.Clock()
 
 """ Globals """
 # Window Resolution
-WIDTH:  int = 600
-HEIGHT: int = 400
+WIDTH  = 600
+HEIGHT = 400
 
 # Colors
 WHITE = (255, 255, 255)
@@ -20,27 +20,27 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Ball Measurements
-BALL_RADIUS: int = 20
+BALL_RADIUS = 20
 
 # Pad Measurements
-PAD_WIDTH:       int = 8
-PAD_HEIGHT:      int = 80
-PAD_WIDTH_HALF:  int = PAD_WIDTH//2
-PAD_HEIGHT_HALF: int = PAD_HEIGHT//2
+PAD_WIDTH       = 8
+PAD_HEIGHT      = 80
+PAD_WIDTH_HALF  = PAD_WIDTH//2
+PAD_HEIGHT_HALF = PAD_HEIGHT//2
 
 # Ball Position And Velocity
 ball_pos = [0, 0]
 ball_vel = [0, 0]
 
 # Pad Position And Velocity
-pad1_pos       = [0, 0]
-pad2_pos       = [0, 0]
-pad1_vel:  int = 0
-pad2_vel:  int = 0
+pad1_pos = [0, 0]
+pad2_pos = [0, 0]
+pad1_vel = 0
+pad2_vel = 0
 
 # Score
-left_score:  int = 0
-right_score: int = 0
+left_score  = 0
+right_score = 0
 
 """ Window Declaration """
 window = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
