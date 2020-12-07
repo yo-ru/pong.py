@@ -33,8 +33,8 @@ ball_pos = [0, 0]
 ball_vel = [0, 0]
 
 # Pad Position And Velocity
-pad1_pos:  int = 0
-pad2_pos:  int = 0
+pad1_pos       = [0, 0]
+pad2_pos       = [0, 0]
 pad1_vel:  int = 0
 pad2_vel:  int = 0
 
