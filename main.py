@@ -55,7 +55,7 @@ def init_ball(right: bool) -> None:
     global ball_pos, ball_vel
 
     # Set Ball Position
-    ball_pos = (WIDTH//2, HEIGHT//2)
+    ball_pos = [WIDTH//2, HEIGHT//2]
 
     # Get A Random Vertical and Horizontal Value
     vert: int = random.randrange(1, 3)
@@ -66,7 +66,7 @@ def init_ball(right: bool) -> None:
         horz = -horz
 
     # Set Velocity
-    ball_vel = (horz, -vert)
+    ball_vel = [horz, -vert]
 
 """ Initialize """
 def init() -> None:
