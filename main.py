@@ -68,9 +68,7 @@ def init_ball(right: bool) -> None:
         horz = -horz
 
     # Set Velocity
-    ball_vel = [horz, -vert]
-
-    log("Reached init_ball end!", Ansi.LCYAN)
+    ball_vel = [3, 2]
 
 """ Initialize """
 def init() -> None:
@@ -86,8 +84,6 @@ def init() -> None:
         init_ball(True)
     else:
         init_ball(False)
-
-    log("Reached init end!", Ansi.LCYAN)
 
 """ Draw Window """
 def draw(window) -> None:
