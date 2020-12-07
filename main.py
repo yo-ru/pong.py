@@ -91,10 +91,8 @@ def draw(window) -> None:
 
     # Set Window Background To Black
     window.fill(BLACK)
-    pygame.draw.line(window, WHITE, [WIDTH//2, 0],[WIDTH//2, HEIGHT], 1)
     pygame.draw.line(window, WHITE, [PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1)
     pygame.draw.line(window, WHITE, [WIDTH-PAD_WIDTH, 0],[WIDTH-PAD_WIDTH, HEIGHT], 1)
-    pygame.draw.circle(window, WHITE, [WIDTH//2, HEIGHT//2], 70, 1)
 
 
 """ Main Loop """
@@ -109,7 +107,7 @@ def main() -> None:
         # Set FPS
         fps.tick(60)
 
-""" Run pong.py """
+""" Run Main Loop """
 if __name__ == "__main__":
     main()
 
