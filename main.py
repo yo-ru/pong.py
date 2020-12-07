@@ -59,16 +59,16 @@ def init_ball(right: bool) -> None:
     # Set Ball Position
     ball_pos = [WIDTH//2, HEIGHT//2]
 
-    # Get A Random Vertical and Horizontal Value
-    vert = random.randrange(1, 3)
+    # Get A Random Horizontal And Vertical Value
     horz = random.randrange(2, 4)
+    vert = random.randrange(1, 3)
 
     # Spawn On The Left If Right Is False
     if not right:
         horz = -horz
 
     # Set Velocity
-    ball_vel = [horz+1, -vert-1]
+    ball_vel = [horz, -vert]
 
     log("Reached init_ball end!", Ansi.LCYAN)
 
@@ -116,8 +116,8 @@ def draw(window) -> None:
         pad2_pos[1] += pad2_vel
 
     # Update And Draw Ball
-    ball_pos[0] = int(ball_pos[0])
-    ball_pos[1] = int(ball_pos[1])
+    ball_pos[0] += int(ball_pos[0])
+    ball_pos[1] += int(ball_pos[1])
     pygame.draw.circle(window, WHITE, ball_pos, BALL_RADIUS, 0)
 
     # Draw Pads
