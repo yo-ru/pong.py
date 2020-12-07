@@ -14,10 +14,10 @@ WIDTH:  int = 600
 HEIGHT: int = 400
 
 # Colors
-WHITE: tuple = tuple[255, 255, 255]
-RED:   tuple = tuple[255, 0, 0]
-GREEN: tuple = tuple[0, 255, 0]
-BLACK: tuple = tuple[0, 0, 0]
+WHITE = (255, 255, 255)
+RED   = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLACK = (0, 0, 0)
 
 # Ball Measurements
 BALL_RADIUS: int = 20
