@@ -74,8 +74,8 @@ def init() -> None:
     global pad1_pos, pad2_pos
     
     # Set Pad Positions
-    pad1_pos = (PAD_WIDTH_HALF-1, HEIGHT//2)
-    pad2_pos = (WIDTH+1-PAD_WIDTH_HALF, HEIGHT//2)
+    pad1_pos = [PAD_WIDTH_HALF-1, HEIGHT//2]
+    pad2_pos = [WIDTH+1-PAD_WIDTH_HALF, HEIGHT//2]
 
     # Ball Spawns Right
     if random.randrange(0, 2) == 0:
