@@ -33,9 +33,10 @@ ball_pos: list = list[0, 0]
 ball_vel: list = list[0, 0]
 
 # Pad Position And Velocity
-pad1_pos: int = 0
-pad2_pos: int = 0
-pad_vel:  int = 0
+pad1_pos:  int = 0
+pad2_pos:  int = 0
+pad1_vel:  int = 0
+pad2_vel:  int = 0
 
 # Score
 left_score:  int = 0
@@ -87,12 +88,66 @@ def init() -> None:
 """ Draw Window """
 def draw(window) -> None:
     # Get Our Globals
-    global pad1_pos, pad2_pos, ball_pos, ball_vel
+    global pad1_pos, pad2_pos, ball_pos, ball_vel, left_score, right_score
 
     # Set Window Background To Black
     window.fill(BLACK)
+
+    # Draw Gutters
     pygame.draw.line(window, WHITE, [PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1)
     pygame.draw.line(window, WHITE, [WIDTH-PAD_WIDTH, 0],[WIDTH-PAD_WIDTH, HEIGHT], 1)
+
+    # Update Pads Vertical Position, Keep Pads On Screen
+    if pad1_pos[1] > PAD_HEIGHT_HALF and pad1_pos[1] < HEIGHT - PAD_HEIGHT_HALF:
+        pad1_pos[1] += pad1_vel
+    elif pad1_pos[1] == PAD_HEIGHT_HALF and pad1_vel > 0:
+        pad1_pos[1] += pad1_vel
+    elif pad1_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad1_vel < 0:
+        pad1_pos += pad1_vel
+    if pad2_pos[1] > PAD_HEIGHT_HALF and pad2_pos[1] < HEIGHT - PAD_HEIGHT_HALF:
+        pad2_pos[1] += pad2_vel
+    elif pad2_pos[1] == PAD_HEIGHT_HALF and pad2_vel > 0:
+        pad2_pos[1] += pad2_vel
+    elif pad2_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad2_vel < 0:
+        pad2_pos += pad2_vel
+
+    # Update And Draw Ball
+    ball_pos[0] = int(ball_pos[0])
+    ball_pos[1] = int(ball_pos[1])
+    pygame.draw.circle(window, WHITE, ball_pos, 20, 0)
+
+    # Draw Pads
+    pygame.draw.polygon(window, GREEN, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
+    pygame.draw.polygon(window, GREEN, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
+
+    # Ball Collision Check With Walls
+    if int(ball_pos[1]) <= BALL_RADIUS:
+        ball_vel[1] = -ball_vel[1]
+    if int(ball_pos[1]) >= HEIGHT + 1 - BALL_RADIUS:
+        ball_vel[1] = -ball_vel[1]
+
+    # Ball Collision Check With Gutters Or Pads
+    if int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH and int(ball_pos[1]) in range(pad1_pos[1] - PAD_HEIGHT_HALF, pad1_pos[1] + PAD_HEIGHT_HALF, 1):
+        ball_vel[0] = -ball_vel[0]
+        ball_vel[0] *= 1.1
+        ball_vel[1] *= 1.1
+    elif int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH:
+        right_score += 1
+        init_ball(True)
+    if int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH and int(ball_pos[1]) in range(pad2_pos[1] - PAD_HEIGHT_HALF, pad2_pos[1] + PAD_HEIGHT_HALF, 1):
+        ball_vel[0] = -ball_vel[0]
+        ball_vel[0] *= 1.1
+        ball_vel[1] *= 1.1
+    elif int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH:
+        left_score += 1
+        init_ball(False)
+
+    # Update and Draw Scores
+    font = pygame.font.SysFont("Comic Sans MS", 20)
+    label = font.render(left_score, 1, WHITE)
+    window.blit(label, (50, 20))
+    label = font.render(right_score, 1, WHITE)
+    window.blit(label, (470, 20))
 
 
 """ Main Loop """
@@ -107,8 +162,12 @@ def main() -> None:
         # Set FPS
         fps.tick(60)
 
-""" Run Main Loop """
+""" Run pong.py """
 if __name__ == "__main__":
+    # Initialize pong.py
+    init()
+
+    # Run pong.py
     main()
 
 
