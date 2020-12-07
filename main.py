@@ -105,13 +105,13 @@ def draw(window) -> None:
         pad1_pos[1] += pad1_vel
     elif pad1_pos[1] == PAD_HEIGHT_HALF and pad1_vel > 0:
         pad1_pos[1] += pad1_vel
-    elif pad1_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad1_vel < 0:
+    elif pad1_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad1_vel <= 0:
         pad1_pos += pad1_vel
     if pad2_pos[1] > PAD_HEIGHT_HALF and pad2_pos[1] < HEIGHT - PAD_HEIGHT_HALF:
         pad2_pos[1] += pad2_vel
     elif pad2_pos[1] == PAD_HEIGHT_HALF and pad2_vel > 0:
         pad2_pos[1] += pad2_vel
-    elif pad2_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad2_vel < 0:
+    elif pad2_pos[1] == HEIGHT - PAD_HEIGHT_HALF and pad2_vel <= 0:
         pad2_pos += pad2_vel
 
     # Update And Draw Ball
