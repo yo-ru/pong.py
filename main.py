@@ -109,6 +109,10 @@ def main() -> None:
         # Set FPS
         fps.tick(60)
 
+""" Run pong.py """
+if __name__ == "__main__":
+    main()
+
 
 
 
