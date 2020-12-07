@@ -57,7 +57,7 @@ def init_ball(right: bool) -> None:
     global ball_pos, ball_vel
 
     # Set Ball Position
-    ball_pos = [WIDTH/2, HEIGHT/2]
+    ball_pos = [WIDTH//2, HEIGHT//2]
 
     # Get A Random Horizontal And Vertical Value
     horz = random.randrange(2, 4)
@@ -116,8 +116,8 @@ def draw(window) -> None:
     pygame.draw.polygon(window, WHITE, [[pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF], [pad2_pos[0] - PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] + PAD_HEIGHT_HALF], [pad2_pos[0] + PAD_WIDTH_HALF, pad2_pos[1] - PAD_HEIGHT_HALF]], 0)
 
     # Update And Draw Ball
-    ball_pos[0] += int(ball_pos[0])
-    ball_pos[1] += int(ball_pos[1])
+    ball_pos[0] += int(ball_vel[0])
+    ball_pos[1] += int(ball_vel[1])
     pygame.draw.circle(window, WHITE, ball_pos, BALL_RADIUS, 0)
 
     # Ball Collision Check With Walls
