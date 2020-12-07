@@ -144,9 +144,9 @@ def draw(window) -> None:
 
     # Update and Draw Scores
     font = pygame.font.SysFont("Comic Sans MS", 20)
-    label = font.render(left_score, 1, WHITE)
+    label = font.render(str(left_score), 1, WHITE)
     window.blit(label, (50, 20))
-    label = font.render(right_score, 1, WHITE)
+    label = font.render(str(right_score), 1, WHITE)
     window.blit(label, (470, 20))
 
 
