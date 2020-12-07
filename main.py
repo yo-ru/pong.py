@@ -21,7 +21,7 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Ball Measurements
-BALL_RADIUS = 20
+BALL_RADIUS = 10
 
 # Pad Measurements
 PAD_WIDTH       = 8
@@ -73,6 +73,8 @@ def init_ball(right: bool) -> None:
     # Set Velocity
     ball_vel = [horz, -vert]
 
+    log("Reached init_ball end!", Ansi.LCYAN)
+
 """ Initialize """
 def init() -> None:
     # Get Our Globals
@@ -87,6 +89,8 @@ def init() -> None:
         init_ball(True)
     else:
         init_ball(False)
+
+    log("Reached init end!", Ansi.LCYAN)
 
 """ Draw Window """
 def draw(window) -> None:
@@ -117,7 +121,7 @@ def draw(window) -> None:
     # Update And Draw Ball
     ball_pos[0] = int(ball_pos[0])
     ball_pos[1] = int(ball_pos[1])
-    pygame.draw.circle(window, WHITE, ball_pos, 20, 0)
+    pygame.draw.circle(window, WHITE, ball_pos, BALL_RADIUS, 0)
 
     # Draw Pads
     pygame.draw.polygon(window, WHITE, [[pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF], [pad1_pos[0] - PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] + PAD_HEIGHT_HALF], [pad1_pos[0] + PAD_WIDTH_HALF, pad1_pos[1] - PAD_HEIGHT_HALF]], 0)
@@ -152,7 +156,7 @@ def draw(window) -> None:
     label = font.render(str(left_score), 1, WHITE)
     window.blit(label, (50, 20))
     label = font.render(str(right_score), 1, WHITE)
-    window.blit(label, (520, 20))
+    window.blit(label, (530, 20))
 
 """ Key Up/Down Events """
 def keyup(event) -> None:
@@ -191,6 +195,7 @@ def main() -> None:
                 keydown(event)
             # Quit Event
             elif event.type == QUIT:
+                log("Quitting pong.py! Thank you for playing!", Ansi.LRED)
                 pygame.quit()
                 sys.exit()
 
@@ -204,7 +209,6 @@ def main() -> None:
 if __name__ == "__main__":
     # Initialize pong.py
     log("Initializing pong.py...", Ansi.LYELLOW)
-    init_ball(False)
     init()
 
     # Run pong.py
