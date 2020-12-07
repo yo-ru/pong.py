@@ -152,7 +152,7 @@ def draw(window) -> None:
     label = font.render(str(left_score), 1, WHITE)
     window.blit(label, (50, 20))
     label = font.render(str(right_score), 1, WHITE)
-    window.blit(label, (500, 20))
+    window.blit(label, (520, 20))
 
 """ Key Up/Down Events """
 def keyup(event) -> None:
@@ -204,6 +204,7 @@ def main() -> None:
 if __name__ == "__main__":
     # Initialize pong.py
     log("Initializing pong.py...", Ansi.LYELLOW)
+    init_ball(False)
     init()
 
     # Run pong.py
