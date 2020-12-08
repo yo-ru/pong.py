@@ -54,7 +54,7 @@ pygame.display.set_caption("pong.py")
 # If Right Is False: Spawn Left
 def init_ball(right: bool) -> None:
     # Log
-    log("Spawned ball!", Ansi.LBLUE)
+    log("Spawned ball!", Ansi.LCYAN)
 
     # Get Our Globals
     global ball_pos, ball_vel
@@ -90,6 +90,9 @@ def init() -> None:
         init_ball(True)
     else:
         init_ball(False)
+    
+    # Log
+    log("Finished initializing!", Ansi.LYELLOW)
 
 """ Draw Window """
 def draw(window) -> None:
