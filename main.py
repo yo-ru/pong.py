@@ -53,6 +53,9 @@ pygame.display.set_caption("pong.py")
 # If Right Is True: Spawn Right
 # If Right Is False: Spawn Left
 def init_ball(right: bool) -> None:
+    # Log
+    log("Spawned ball!", Ansi.LBLUE)
+
     # Get Our Globals
     global ball_pos, ball_vel
 
@@ -72,6 +75,9 @@ def init_ball(right: bool) -> None:
 
 """ Initialize """
 def init() -> None:
+    # Log
+    log("Initializing...", Ansi.LYELLOW)
+
     # Get Our Globals
     global pad1_pos, pad2_pos
     
@@ -155,16 +161,20 @@ def draw(window) -> None:
 
 """ Key Up/Down Events """
 def keyup(event) -> None:
+    # Get Our Globals
     global pad1_vel, pad2_vel
 
+    # If Keys Are Up Set Pad Velocity To 0
     if event.key in (K_w, K_s):
         pad1_vel = 0
     elif event.key in (K_UP, K_DOWN):
         pad2_vel = 0
 
 def keydown(event) -> None:
+    # Get Our Globals
     global pad1_vel, pad2_vel
 
+    # If Keys Are Down Set Pad Velocity To -8, 8
     if event.key == K_w:
         pad1_vel = -8
     elif event.key == K_s:
@@ -176,6 +186,12 @@ def keydown(event) -> None:
 
 """ Main Loop """
 def main() -> None:
+    # Initialize pong.py
+    init()
+
+    # Log
+    log("pong.py is now running!", Ansi.LGREEN)
+
     while True:
         # Draw Window
         draw(window)
@@ -202,10 +218,4 @@ def main() -> None:
 
 """ Run pong.py """
 if __name__ == "__main__":
-    # Initialize pong.py
-    log("Initializing pong.py...", Ansi.LYELLOW)
-    init()
-
-    # Run pong.py
-    log("pong.py is now running!", Ansi.LGREEN)
     main()
