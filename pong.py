@@ -6,6 +6,10 @@ import pygame
 from pygame.locals import (KEYDOWN, KEYUP, K_DOWN, K_UP, QUIT, K_w, K_s)
 from cmyui import (log, Ansi)
 
+""" Initialize pygame """
+pygame.init()
+fps = pygame.time.Clock()
+
 """ Global Variables """
 # Window Resolution
 WIDTH  = 600
@@ -44,10 +48,6 @@ pad2_vel = 0
 # Score
 left_score  = 0
 right_score = 0
-
-""" Initialize pygame """
-pygame.init()
-fps = pygame.time.Clock()
 
 """ Window Declaration """
 window = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
