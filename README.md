@@ -9,6 +9,8 @@ Features:
 - The classic table-tennis-esque game, pong!
 
 TODO:
+- Main menu.
+- Fix background music.
 - Bot/AI.
 - Different modes/difficulties.
 
