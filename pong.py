@@ -22,11 +22,16 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Audio
+MUSIC_CHANNEL = pygame.mixer.Channel()
+MUSIC_CHANNEL.set_volume(0.05)
+
+SFX_CHANNEL   = pygame.mixer.Channel()
+SFX_CHANNEL.set_volume(1)
+
 PAD_SOUND   = pygame.mixer.Sound("./audio/pad.mp3")
 WALL_SOUND  = pygame.mixer.Sound("./audio/wall.mp3")
 SCORE_SOUND = pygame.mixer.Sound("./audio/score.mp3")
 MUSIC_SOUND = pygame.mixer.Sound("./audio/music.mp3")
-MUSIC_SOUND.set_volume(0.1)
 
 # Ball Measurements
 BALL_RADIUS = 10
@@ -107,7 +112,7 @@ def draw(window) -> None:
     global pad1_pos, pad2_pos, ball_pos, ball_vel, left_score, right_score
 
     # Play Music
-    MUSIC_SOUND.play(-1)
+    MUSIC_CHANNEL.play(MUSIC_SOUND, -1)
 
     # Set Window Background To Black
     window.fill(BLACK)
@@ -144,32 +149,32 @@ def draw(window) -> None:
     # Ball Collision Check With Walls
     if int(ball_pos[1]) <= BALL_RADIUS:
         ball_vel[1] = -ball_vel[1]
-        WALL_SOUND.play(1)
+        SFX_CHANNEL.play(WALL_SOUND, 1)
     if int(ball_pos[1]) >= HEIGHT + 1 - BALL_RADIUS:
         ball_vel[1] = -ball_vel[1]
-        WALL_SOUND.play(1)
+        SFX_CHANNEL.play(WALL_SOUND, 1)
 
     # Ball Collision Check With Gutters Or Pads
     if int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH and int(ball_pos[1]) in range(pad1_pos[1] - PAD_HEIGHT_HALF, pad1_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
         ball_vel[0] *= 1.1
         ball_vel[1] *= 1.1
-        PAD_SOUND.play(1)
+        SFX_CHANNEL.play(PAD_SOUND, 1)
     elif int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH:
         right_score += 1
         log(f"Right scored! ({right_score})", Ansi.LBLUE)
         init_ball(True)
-        SCORE_SOUND.play(1)
+        SFX_CHANNEL.play(SCORE_SOUND, 1)
     if int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH and int(ball_pos[1]) in range(pad2_pos[1] - PAD_HEIGHT_HALF, pad2_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
         ball_vel[0] *= 1.1
         ball_vel[1] *= 1.1
-        PAD_SOUND.play(1)
+        SFX_CHANNEL.play(PAD_SOUND, 1)
     elif int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH:
         left_score += 1
         log(f"Left scored! ({left_score})", Ansi.LBLUE)
         init_ball(False)
-        SCORE_SOUND.play(1)
+        SFX_CHANNEL.play(SCORE_SOUND, 1)
 
     # Update and Draw Scores
     font = pygame.font.SysFont("Comic Sans MS", 20)
