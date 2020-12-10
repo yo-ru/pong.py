@@ -22,10 +22,10 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Audio
-MUSIC_CHANNEL = pygame.mixer.Channel(0)
-MUSIC_CHANNEL.set_volume(1)
+MUSIC_CHANNEL = pygame.mixer.Channel(1)
+MUSIC_CHANNEL.set_volume(0.1)
 
-SFX_CHANNEL   = pygame.mixer.Channel(1)
+SFX_CHANNEL   = pygame.mixer.Channel(2)
 SFX_CHANNEL.set_volume(1)
 
 PAD_SOUND   = pygame.mixer.Sound("./audio/pad.mp3")
