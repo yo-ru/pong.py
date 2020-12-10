@@ -22,12 +22,16 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Audio
+MUSIC_CHANNEL = pygame.mixer.Channel(0)
+MUSIC_CHANNEL.set_volume(1)
+
 SFX_CHANNEL   = pygame.mixer.Channel(1)
 SFX_CHANNEL.set_volume(1)
 
 PAD_SOUND   = pygame.mixer.Sound("./audio/pad.mp3")
 WALL_SOUND  = pygame.mixer.Sound("./audio/wall.mp3")
 SCORE_SOUND = pygame.mixer.Sound("./audio/score.mp3")
+MUSIC_SOUND = pygame.mixer.Sound("./audio/music.mp3")
 
 # Ball Measurements
 BALL_RADIUS = 10
@@ -108,9 +112,7 @@ def draw(window) -> None:
     global pad1_pos, pad2_pos, ball_pos, ball_vel, left_score, right_score
 
     # Play Music
-    pygame.mixer.music.load("./audio/music.mp3")
-    pygame.mixer.music.set_volume(0.1)
-    pygame.mixer.music.play(-1)
+    MUSIC_CHANNEL.play(MUSIC_SOUND)
 
     # Set Window Background To Black
     window.fill(BLACK)
