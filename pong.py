@@ -12,8 +12,8 @@ fps = pygame.time.Clock()
 
 """ Global Variables """
 # Window Resolution
-WIDTH  = 600
-HEIGHT = 400
+WIDTH  = 1280
+HEIGHT = 720
 
 # Colors
 WHITE = (255, 255, 255)
