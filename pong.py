@@ -147,12 +147,12 @@ def draw(window) -> None:
     if int(ball_pos[1]) <= BALL_RADIUS:
         ball_vel[1] = -ball_vel[1]
 
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(WALL_SOUND)
     if int(ball_pos[1]) >= HEIGHT + 1 - BALL_RADIUS:
         ball_vel[1] = -ball_vel[1]
 
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(WALL_SOUND)
 
     # Ball Collision Check With Gutters Or Pads
@@ -161,27 +161,27 @@ def draw(window) -> None:
         ball_vel[0] *= 1.1
         ball_vel[1] *= 1.1
 
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(PAD_SOUND)
     elif int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH:
         right_score += 1
         log(f"Right scored! ({right_score})", Ansi.LBLUE)
         init_ball(True)
 
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(SCORE_SOUND)
     if int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH and int(ball_pos[1]) in range(pad2_pos[1] - PAD_HEIGHT_HALF, pad2_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
         ball_vel[0] *= 1.1
         ball_vel[1] *= 1.1
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(PAD_SOUND)
     elif int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH:
         left_score += 1
         log(f"Left scored! ({left_score})", Ansi.LBLUE)
         init_ball(False)
 
-        if not SFX_CHANNEL.get_busy:
+        if not SFX_CHANNEL.get_busy():
             SFX_CHANNEL.play(SCORE_SOUND)
 
     # Update and Draw Scores
