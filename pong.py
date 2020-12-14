@@ -30,7 +30,7 @@ SFX_CHANNEL.set_volume(1)
 
 MUSIC_SOUND   = pygame.mixer.Sound("./audio/music.ogg")
 MUSIC_CHANNEL = pygame.mixer.Channel(1)
-MUSIC_CHANNEL.set_volume(1)
+MUSIC_CHANNEL.set_volume(0.1)
 MUSIC_CHANNEL.play(MUSIC_SOUND, -1)
 
 # Ball Measurements
