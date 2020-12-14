@@ -157,8 +157,8 @@ def draw(window) -> None:
     # Ball Collision Check With Gutters Or Pads
     if int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH and int(ball_pos[1]) in range(pad1_pos[1] - PAD_HEIGHT_HALF, pad1_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
-        ball_vel[0] *= 1.1
-        ball_vel[1] *= 1.1
+        ball_vel[0] *= 10.0
+        ball_vel[1] *= 10.0
         SFX_CHANNEL.play(PAD_SOUND)
     elif int(ball_pos[0]) <= BALL_RADIUS + PAD_WIDTH:
         right_score += 1
@@ -167,8 +167,8 @@ def draw(window) -> None:
         SFX_CHANNEL.play(SCORE_SOUND)
     if int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH and int(ball_pos[1]) in range(pad2_pos[1] - PAD_HEIGHT_HALF, pad2_pos[1] + PAD_HEIGHT_HALF, 1):
         ball_vel[0] = -ball_vel[0]
-        ball_vel[0] *= 1.1
-        ball_vel[1] *= 1.1
+        ball_vel[0] *= 10.0
+        ball_vel[1] *= 10.0
         SFX_CHANNEL.play(PAD_SOUND)
     elif int(ball_pos[0]) >= WIDTH + 1 - BALL_RADIUS - PAD_WIDTH:
         left_score += 1
