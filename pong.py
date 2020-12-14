@@ -22,11 +22,11 @@ GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
 
 # Audio
-MUSIC_CHANNEL = pygame.mixer.Channel(0)
-MUSIC_CHANNEL.set_volume(0.1)
-
-SFX_CHANNEL   = pygame.mixer.Channel(1)
+SFX_CHANNEL   = pygame.mixer.Channel(0)
 SFX_CHANNEL.set_volume(1)
+
+MUSIC_CHANNEL = pygame.mixer.Channel(1)
+MUSIC_CHANNEL.set_volume(1)
 
 PAD_SOUND   = pygame.mixer.Sound("./audio/pad.ogg")
 WALL_SOUND  = pygame.mixer.Sound("./audio/wall.ogg")
@@ -112,7 +112,7 @@ def draw(window) -> None:
     global pad1_pos, pad2_pos, ball_pos, ball_vel, left_score, right_score
 
     # Play Music
-    MUSIC_CHANNEL.play(MUSIC_SOUND)
+    MUSIC_CHANNEL.play(MUSIC_SOUND, -1)
 
     # Set Window Background To Black
     window.fill(BLACK)
