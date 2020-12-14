@@ -28,10 +28,10 @@ MUSIC_CHANNEL.set_volume(0.1)
 SFX_CHANNEL   = pygame.mixer.Channel(1)
 SFX_CHANNEL.set_volume(1)
 
-PAD_SOUND   = pygame.mixer.Sound("./audio/pad.mp3")
-WALL_SOUND  = pygame.mixer.Sound("./audio/wall.mp3")
-SCORE_SOUND = pygame.mixer.Sound("./audio/score.mp3")
-MUSIC_SOUND = pygame.mixer.Sound("./audio/music.mp3")
+PAD_SOUND   = pygame.mixer.Sound("./audio/pad.ogg")
+WALL_SOUND  = pygame.mixer.Sound("./audio/wall.ogg")
+SCORE_SOUND = pygame.mixer.Sound("./audio/score.ogg")
+MUSIC_SOUND = pygame.mixer.Sound("./audio/music.ogg")
 
 # Ball Measurements
 BALL_RADIUS = 10
