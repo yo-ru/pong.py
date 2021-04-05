@@ -38,7 +38,7 @@ python3.9 -m pip install -r requirements.txt
 python3.9 pong.py
 ```
 
-### Windows (latested tested version is 1909)
+### Windows (latest tested version is 1909)
 ```sh
 # Install python3.9.
 1. Go to (https://www.python.org/downloads/release/python-391/) in your favorite browser.
