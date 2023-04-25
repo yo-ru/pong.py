@@ -4,6 +4,7 @@ pygame
 # Requirements for cmyui_pkg.
 # No clue why we need mysql packages when we're just using the log module.
 cmyui
+tzdata
 mysql-connector-python
 aiomysql
 asyncpg
